@@ -8,22 +8,22 @@ import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
 
 
-const App = (props) => {
+const App = ({ onAppLoad }) => {
   useEffect(() => {
     const isUserAuthed = JSON.parse(localStorage.getItem("authed"));
-    props.onAppLoad(isUserAuthed);
-  },[]);
+    onAppLoad(isUserAuthed);
+  },[onAppLoad]);
 
-return(
-      <Layout>
-        <Switch>
-          <Route path="/" exact component={HomePage}  />
-          <Route path="/news" component={NewsPage} />
-          <Route path="/profile" component={ProfilePage} />
-          <Route path="/login" component={LoginPage} />
-        </Switch>
-      </Layout>
-)
+  return (
+    <Layout>
+      <Switch>
+        <Route path="/" exact component={HomePage}  />
+        <Route path="/news" component={NewsPage} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route path="/login" component={LoginPage} />
+      </Switch>
+    </Layout>
+  )
 }
 
 const mapDispatchToProps = dispatch => {
@@ -31,4 +31,4 @@ const mapDispatchToProps = dispatch => {
     onAppLoad: (authed) => dispatch({type:'APP_LOAD', payload: {isAuth: authed} })
   };
 };
-export default connect(null,mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

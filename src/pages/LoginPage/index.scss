@@ -1,0 +1,21 @@
+@import "../../assets/scss/main.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 260px;
+  justify-content: space-around;
+
+  &__input {
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid $grey;
+    outline: none;
+  }
+
+  &__errorMessage {
+    color: $red;
+  }
+}

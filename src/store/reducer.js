@@ -8,24 +8,24 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
-        case 'LOGIN_USER':
-            return {
-                ...state,
-                authed: true
-            }
         case 'APP_LOAD':
             return {
                 ...state,
                 authed: action.payload.isAuth
             }
-            case 'LOGOUT_USER':
-                return {
-                    ...state,
-                    authed: false
-                }
+        case 'LOGIN_USER':
+            return {
+                ...state,
+                authed: true
+            }
+        case 'LOGOUT_USER':
+            return {
+                ...state,
+                authed: false
+            }
+        default:
+            return state
     }
-
-    return state;
 };
 
 export default reducer;

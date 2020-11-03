@@ -1,7 +1,11 @@
+@import "../../assets/scss/main.scss";
+
 .footer {
-  background-color: #4f4480;
-  color: #fff;
+  background-color: $primary;
+  color: $white;
   text-align: center;
+  margin-top: auto;
+
   &__wrapper {
     padding: 2rem 0;
   }

@@ -1,0 +1,17 @@
+@import "../../assets/scss/main.scss";
+
+.button {
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  max-width: 200px;
+  cursor: pointer;
+  outline: none;
+  font-size: 1.2rem;
+
+  &:hover {
+    color: $white;
+    background-color: $primary;
+    border: 1px solid $white;
+  }
+}

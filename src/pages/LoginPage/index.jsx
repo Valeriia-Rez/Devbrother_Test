@@ -1,38 +1,40 @@
 import React, {useState} from 'react';
 import { Redirect } from 'react-router';
 import {connect} from 'react-redux';
+import './index.scss';
+import Button from '../../components/Button';
 
 const ErrorMessage = () => (
-    <p>Имя пользователя или пароль введены не верно</p>
+    <p className="form__errorMessage">Имя пользователя или пароль введены не верно</p>
 );
 
-const LoginPage = (props) => {
+const LoginPage = ({credentials, onAuthorize, authed}) => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(false);
 
     const onClickHandler = () => {
-        if(userName === props.credentials.username && password === props.credentials.password){
-            props.onAuthorize();
+        if(userName === credentials.username && password === credentials.password){
+            onAuthorize();
             localStorage.setItem("authed",true);
         } else{
            setErrorMessage(true);
         }
     }
 
-    return(
+    return (
         <>
-        {!props.authed && errorMessage && <ErrorMessage/>}
-        {props.authed ? <Redirect to="/profile"/> : 
-        <div>
-            <form>
-                <input type="text" name="userName" placeholder="userName" value={userName} onChange={(e) => setUserName(e.target.value)}></input>
-                <input type="password" name="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                <button type="button" onClick={onClickHandler}>Sign in</button>
-            </form>
-        </div>
-    }
-    </>
+            {authed ? <Redirect to="/profile"/> :   
+                <div>
+                    <form className="form">
+                        <input type="text" className="form__input" name="userName" placeholder="userName" value={userName} onChange={(e) => setUserName(e.target.value)}></input>
+                        <input type="password" className="form__input" name="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                        {!authed && errorMessage && <ErrorMessage/>}
+                        <Button buttonName="Sign in" onClick={onClickHandler}/>
+                    </form>
+                </div>
+            }
+        </>
     )
 }
 

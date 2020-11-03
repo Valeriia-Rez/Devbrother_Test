@@ -1,0 +1,13 @@
+@import "../../assets/scss/main.scss";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+}
+
+.main {
+  padding: 2rem 3rem;
+  color: $grey;
+}

@@ -1,30 +1,28 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import Button from '../../components/Button';
+import './index.scss';
 
-
-
-
-const Header = (props) => {
+const Header = ({onLogOut, authed}) => {
     const onSignOutHandler = () => {
-        props.onLogOut();
+        onLogOut();
         localStorage.setItem("authed", false);
     }
-    return(
-    <div>
-        <header>
-            <nav>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/news">News</Link></li>
-                    <li><Link to="/profile">Profile</Link></li>
+
+    return (
+        <div className="header">
+            <nav className="header__nav">
+                <ul className="header__menu">
+                    <li className="header__menu-item"><Link to="/" className="header__link">Home</Link></li>
+                    <li className="header__menu-item"><Link to="/news" className="header__link">News</Link></li>
+                    <li className="header__menu-item"><Link to="/profile" className="header__link">Profile</Link></li>
                 </ul>
             </nav>
-            {props.authed &&
-            <button type="button" onClick={onSignOutHandler}>Sign out</button>
-    }
-        </header>
-    </div>
+            {authed &&
+                <Button buttonName="Sign out"  onClick={onSignOutHandler}/>
+            }
+        </div>
     )
 }
 
